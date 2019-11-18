@@ -26,9 +26,13 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+
 import {createAppContainer} from 'react-navigation';
-import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
+import BottomNavigation, {
+  FullTab
+} from 'react-native-material-bottom-navigation'
 
 
 import Start from './pages/Start';
@@ -42,37 +46,17 @@ import Trending from './pages/Trending';
 import Exclusive from './pages/Exclusive';
 import Qr from './pages/Qr';
 import splash from './pages/splash';
+import Item_detail from './pages/Item_detail';
+import Tab from './pages/Tab';
+import MyProfile from './pages/MyProfile';
+// import MyOrder from './pages/MyOrder';
+// import Notification from './pages/Notification';
+// import Offer from './pages/Offer';
 
 
-
-
+// export default createAppContainer(App);
 export default class App extends React.Component {
-
-  state = {
-    height: new Animated.Value(600), // Initial value for opacity: 0
-    width: new Animated.Value(360), // Initial value for opacity: 0
-  };
-
-  componentDidMount() {
-    Animated.timing(
-      this.state.width, // The animated value to drive
-      {
-        toValue: 360, // Animate to opacity: 1 (opaque)
-        duration: 450, // Make it take a while
-      }
-    ).start(); // Starts the animation
-    Animated.timing(
-      this.state.height, // The animated value to drive
-      {
-        toValue: 750, // Animate to opacity: 1 (opaque)
-        duration: 10000, // Make it take a while
-      }
-    ).start(); // Starts the animation
-    setTimeout(function() {
-      alert('Go to next Screen');
-    }, 12000);
-  }
-
+  
 
   render() {
     const Routes = createStackNavigator({
@@ -87,13 +71,21 @@ export default class App extends React.Component {
       Exclusive:{screen: Exclusive},
       Qr:{screen: Qr},
       splash:{screen: splash},
+      Item_detail:{screen: Item_detail},
+      Tab:{screen: Tab},
+      MyProfile:{screen: MyProfile},
+      // MyOrder:{screen: MyOrder},
+      // Notification:{screen: Notification},
+      // Offer:{screen: Offer},
     })
     
-    
-    
+
     const Root =  createAppContainer(Routes);
     return (
       <Root/>
     );
   }
+
+    
+
 }

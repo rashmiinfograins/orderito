@@ -26,7 +26,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SearchBar from 'react-native-search-bar';
 import SegmentedControlTab from "react-native-segmented-control-tab";
-export default class Meals extends React.Component {
+export default class Item_detail extends React.Component {
  
   
     render() {

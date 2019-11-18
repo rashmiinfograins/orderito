@@ -37,7 +37,7 @@ import Login from './Login';
 
 
 
-export default class Qr extends React.Component {
+export default class Offer extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
        header: () => null

@@ -26,14 +26,15 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SearchBar from 'react-native-search-bar';
 import SegmentedControlTab from "react-native-segmented-control-tab";
-export default class Meals extends React.Component {
+
+export default class MyProfile extends React.Component {
  
   
     render() {
       const { search } = this.state;
       return (
         <View style={styles.container}>
-       <Text>Meals</Text>
+       <Text>MyProfile</Text>
         </View>
       );
     }

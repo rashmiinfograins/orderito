@@ -28,24 +28,31 @@ import {
   
 } from 'react-native';
 
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { SearchBar } from 'react-native-elements';
-// import Tabbar from 'react-native-tabbar-bottom'
-// import Tabbar from 'react-native-tabbar-bottom'
+//import Tabbar from 'react-native-tabbar-bottom'
 
 
 
 export default class Home extends React.Component {
-
- 
+  static navigationOptions = ({ navigation }) => {
+    return {
+       header: () => null
+    } 
+}
   constructor(props) {
     super(props);
     //setting default state
     this.state = { isLoading: true, search: '' };
     this.arrayholder = [];
+    this.state = {
+      page: "Home",
+    }
 
-   
 
     // this.state1 = {
     //   page: "Home",
@@ -206,6 +213,7 @@ export default class Home extends React.Component {
 
   
   render() {
+    const { navigation:navigate } = this.props;
     if (this.state.isLoading) {
       //Loading View while data is loading
       return (
@@ -238,15 +246,15 @@ export default class Home extends React.Component {
           value={this.state.search}
           />
     <View>
-    <View style = { styles.scrollViewHolder }>
+    <View style = { styles.scrollViewHolder } >
         <ScrollView horizontal = { true } showsHorizontalScrollIndicator = { false }>
-          <Text style = { styles.item }>Meals</Text>
+          <Text style = { styles.item } onPress={() => navigation.navigate('Meals')}>Meals</Text>
           <View style = { styles.separator }/>
-          <Text style = { styles.item }>Desserts</Text>
+          <Text style = { styles.item } onPress={() => navigation.navigate('Desserts')}>Desserts</Text>
           <View style = { styles.separator }/>
-          <Text style = { styles.item }>Trending</Text>
+          <Text style = { styles.item } onPress={() => navigation.navigate('Trending')}>Trending</Text>
           <View style = { styles.separator }/>
-          <Text style = { styles.item }>Exclusive</Text>
+          <Text style = { styles.item } onPress={() => navigation.navigate('Exclusive')}>Exclusive</Text>
           </ScrollView>
           </View>
       </View>
@@ -268,13 +276,14 @@ export default class Home extends React.Component {
           <FlatList
           roundAvatar
               data={this.state.FlatListItems}
+              
               //data defined in constructor
               ItemSeparatorComponent={this.FlatListItemSeparator}
               //Item Separator View
               renderItem={({ item }) => (
                 // Single Comes here which will be repeatative for the FlatListItems
-                <View style={{flexDirection: 'row', textAlign: 'left', fontSize: 15, marginLeft:20,}}>
-                    <Image source={require('./assets/oderito-logo.png')} style={{width: 70, height: 70, borderRadius:70,backgroundColor:'grey',marginBottom:10}}/>
+                <View style={{flexDirection: 'row', textAlign: 'left', fontSize: 15, marginLeft:20,}} >
+                    <Image source={require('./assets/oderito-logo.png')} style={{width: 70, height: 70, borderRadius:70,backgroundColor:'grey',marginBottom:10}} />
                     <View style={styles.itemBlock}>
                     <Text
                       style={styles.itemName}
@@ -284,7 +293,7 @@ export default class Home extends React.Component {
                     {/* <View>
                     <Text>3*</Text>
                     </View> */}
-                    <Text style={styles.itemLastMessage}>Vindhyachal</Text>
+                    <Text style={styles.itemLastMessage} onPress={() => navigation.navigate('Item_detail')}>Vindhyachal</Text>
                     <Text style={styles.itemLastMessage}>Rs.80.00</Text>
                     </View>
                 </View>
@@ -307,12 +316,16 @@ export default class Home extends React.Component {
           keyExtractor={(item, index) => index.toString()}
         />
         </View>
-        {/* <View>
-        {this.state1.page === "Home" && <Text>Screen1</Text>}
-        {this.state1.page === "Desserts" && <Text>Screen2</Text>}
-        {this.state1.page === "Meals" && <Text>Screen3</Text>}
-        {this.state1.page === "Meals" && <Text>Screen4</Text>}
-        {this.state1.page === "Trending" && <Text>Screen5</Text>}
+        {/* <View style={styles.container_bottom}>
+        {
+          // if you are using react-navigation just pass the navigation object in your components like this:
+          // {this.state.page === "HomeScreen" && <MyComp navigation={this.props.navigation}>Screen1</MyComp>}
+        }
+        {this.state.page === "Home" && <Text>Screen1</Text>}
+        {this.state.page === "Desserts" && <Text>Screen2</Text>}
+        {this.state.page === "Meals" && <Text>Screen3</Text>}
+        {this.state.page === "Trending" && <Text>Screen4</Text>}
+        {this.state.page === "Exclusive" && <Text>Screen5</Text>}
 
         <Tabbar
           stateFunc={(tab) => {
@@ -322,30 +335,30 @@ export default class Home extends React.Component {
           activePage={this.state.page}
           tabs={[
             {
-              page: "HomeScreen",
+              page: "Home",
               icon: "home",
             },
             {
-              page: "NotificationScreen",
+              page: "Desserts",
               icon: "notifications",
               badgeNumber: 11,
             },
             {
-              page: "ProfileScreen",
+              page: "Meals",
               icon: "person",
             },
             {
-              page: "ChatScreen",
+              page: "Trending",
               icon: "chatbubbles",
               badgeNumber: 7,
             },
             {
-              page: "SearchScreen",
+              page: "Exclusive",
               icon: "search",
             },
           ]}
         />
-        </View> */}
+      </View> */}
     </View>
     );
   }
@@ -396,6 +409,9 @@ export default class Home extends React.Component {
    },
    itemBlock:{
      padding:10,
+   },
+   container_bottom:{
+     flex:1,
    }
 });
 

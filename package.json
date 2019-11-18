@@ -1,4 +1,4 @@
-{ 
+{
   "homepage": "http://rashmiinfograins.github.io/orderito",
   "name": "Restaurant",
   "version": "0.0.1",
@@ -20,6 +20,7 @@
     "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "^1.5.0",
     "react-native-ionicons": "^4.6.3",
+    "react-native-material-bottom-navigation": "^1.0.4",
     "react-native-otp-textinput": "0.0.6",
     "react-native-reanimated": "^1.4.0",
     "react-native-search-bar": "^3.5.1",

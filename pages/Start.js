@@ -17,7 +17,6 @@ import {
   Text,
   TouchableOpacity,
   Modal,
-
   TouchableHighlight,
   StatusBar,
   TextInput,
@@ -35,8 +34,6 @@ import Login from './Login';
 // } from 'react-native/Libraries/NewAppScreen';
 
 
-
-
 export default class Start extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
@@ -50,8 +47,9 @@ export default class Start extends React.Component {
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
+
+
   render() {
-    
     return (
      <View style={styles.container}>
        <Image source={require('./assets/oderito-logo.png')} style={{width: 230, height: 90}} />
@@ -133,6 +131,7 @@ export default class Start extends React.Component {
     )
   }
 }
+
 
   const styles = StyleSheet.create({
       container:{
